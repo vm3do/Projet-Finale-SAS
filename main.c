@@ -388,10 +388,11 @@ void rechercher_reclamation() {
         char client[50];
         printf("Entrez le nom du client : ");
         scanf(" %[^\n]", client);
-        int found = 0; // check wach kayn recs lhad lclient
+        
+        int found = 0;  // Variable to check if any complaints are found
 
         for (int i = 0; i < complaint_count; i++) {
-            if (strcmp(users[i].username, client) == 0) {
+            if (strcmp(complaints[i].username, client) == 0) {
                 printf("\n+--------------------------------------------+\n");
                 printf("| \e[1;36mDetail de la Reclamation\e[0m\n");
                 printf("+--------------------------------------------+\n");
@@ -402,11 +403,13 @@ void rechercher_reclamation() {
                 printf("| \e[1;33mStatut     :\e[0m %s\n", complaints[i].status);
                 printf("| \e[1;33mDate       :\e[0m %s\n", complaints[i].date);
                 printf("+--------------------------------------------+\n\n");
-                found = 1;
+                
+                found = 1;  // Mark that a complaint was found
             }
-            if (!found){
-                printf("\e[1;31mAucune reclamation trouvee pour le client %s.\e[0m\n", client);
-            }
+        }
+        
+        if (!found) {
+            printf("\e[1;31mAucune reclamation trouvee pour ce client.\e[0m\n");
         }
     } else if (choix == 3) {
         char date[11];
